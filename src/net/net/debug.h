@@ -3,7 +3,7 @@
 
 /**
  * @brief 调试信息
- * @version 0.2 添加调试等级,不同等级的颜色不同
+ * @version 0.3 增加断言
  */
 
 // 调试信息的显示样式设置
@@ -21,5 +21,14 @@ void dbg_print(int level, int s_level, const char* file, const char* func, int l
 #define dbg_info(level, fmt, ...) dbg_print(level, DBG_LEVEL_INFO, __FILE__, __FUNCTION__, __LINE__, fmt, ##__VA_ARGS__)
 #define dbg_error(level, fmt, ...) dbg_print(level, DBG_LEVEL_ERROR, __FILE__, __FUNCTION__, __LINE__, fmt, ##__VA_ARGS__)
 #define dbg_warning(level, fmt, ...) dbg_print(level, DBG_LEVEL_WARNING, __FILE__, __FUNCTION__, __LINE__, fmt, ##__VA_ARGS__)
+
+#define dbg_assert(expr, msg)                                                                                               \
+    {                                                                                                                       \
+        if (!(expr)) {                                                                                                      \
+            dbg_print(DBG_LEVEL_ERROR, DBG_LEVEL_ERROR, __FILE__, __FUNCTION__, __LINE__, "assert failed: " #expr "," msg); \
+            while (1)                                                                                                       \
+                ;                                                                                                           \
+        }                                                                                                                   \
+    }
 
 #endif

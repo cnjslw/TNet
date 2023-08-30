@@ -25,6 +25,9 @@ int main(void)
     dbg_info(DBG_TEST, "debug_info");
     dbg_warning(DBG_TEST, "debug_warning");
     dbg_error(DBG_TEST, "debug_error");
+    // 断言测试
+    dbg_assert(1 == 2, "fail");
+
     // 网络初始化
     net_init();
     net_start();
