@@ -3,6 +3,7 @@
  * @version 0.1
  */
 
+#include "debug.h"
 #include "net.h"
 #include "net_err.h"
 #include "netif_pcap.h"
@@ -18,6 +19,7 @@ net_err_t netdev_init(void)
 
 int main(void)
 {
+    dbg_info("debug_info");
     // 网络初始化
     net_init();
     net_start();
