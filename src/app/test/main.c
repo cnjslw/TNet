@@ -3,31 +3,34 @@
  * @version 0.1
  */
 
+#include "net.h"
 #include "sys_plat.h"
 #include <stdio.h>
-
 static sys_sem_t sem;
 
 void thread1_entry(void* arg)
 {
     while (1) {
         plat_printf("this is thread1: %s \n", (char*)arg);
-        sys_sleep(1000);
+        sys_sem_notify(sem);
+        sys_sleep(100);
     }
 }
 
 void thread2_entry(void* arg)
 {
+    sys_sem_wait(sem, 0);
     while (1) {
-        sys_sem_wait(sem, 0);
         plat_printf("this is thread2: %s \n", (char*)arg);
-        sys_sleep(1000);
+        sys_sleep(100);
     }
 }
 
 int main(void)
 {
-    sys_sem_t sem = sys_sem_create(0);
+    net_init();
+    net_start();
+    sem = sys_sem_create(0);
     sys_thread_create(thread1_entry, "AAA");
     sys_thread_create(thread2_entry, "BBB");
 
