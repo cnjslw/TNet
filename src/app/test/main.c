@@ -17,9 +17,14 @@ net_err_t netdev_init(void)
     return NET_ERR_OK;
 }
 
+#define DBG_TEST DBG_LEVEL_INFO
+
 int main(void)
 {
-    dbg_info("debug_info");
+    // 日志测试
+    dbg_info(DBG_TEST, "debug_info");
+    dbg_warning(DBG_TEST, "debug_warning");
+    dbg_error(DBG_TEST, "debug_error");
     // 网络初始化
     net_init();
     net_start();
