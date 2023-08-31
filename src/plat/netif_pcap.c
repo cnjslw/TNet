@@ -4,13 +4,12 @@
  */
 
 #include "netif_pcap.h"
+#include "exmsg.h"
 #include "sys_plat.h"
 
 /**
  * @brief 发送线程
  * @version 0.1
- * @param XXX CCCCCCC
- * @param XXX CCCCCCC
  */
 void recv_thread(void* args)
 {
@@ -23,8 +22,6 @@ void recv_thread(void* args)
 /**
  * @brief 接收线程
  * @version 0.1
- * @param XXX CCCCCCC
- * @param XXX CCCCCCC
  */
 void xmit_thread(void* args)
 {

@@ -101,15 +101,15 @@ void mblocker_test(void)
 int main(void)
 {
     // 日志测试
-    dbg_info(DBG_TEST, "debug_info");
-    dbg_warning(DBG_TEST, "debug_warning");
-    dbg_error(DBG_TEST, "debug_error");
+    // dbg_info(DBG_TEST, "debug_info");
+    // dbg_warning(DBG_TEST, "debug_warning");
+    // dbg_error(DBG_TEST, "debug_error");
     // 断言测试
-    dbg_assert(1 == 1, "fail");
+    // dbg_assert(1 == 1, "fail");
     // 通用链表测试
-    nlist_test();
+    // nlist_test();
     // 内存控制块测试
-    mblocker_test();
+    // mblocker_test();
     // 网络初始化
     net_init();
     net_start();

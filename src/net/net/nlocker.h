@@ -2,7 +2,7 @@
 #define __NLOCKER_H__
 
 #include "net_err.h"
-#include "sys_plat.h"
+#include "sys.h"
 /**
  * @brief 锁类型
  */
