@@ -4,10 +4,12 @@
  */
 
 #include "debug.h"
+#include "mblock.h"
 #include "net.h"
 #include "net_err.h"
 #include "netif_pcap.h"
 #include "nlist.h"
+#include "nlocker.h"
 #include "sys_plat.h"
 
 static sys_sem_t sem;
@@ -27,7 +29,6 @@ typedef struct _tnode_t {
     int id;
     nlist_node_t node;
 } tnode_t;
-
 void nlist_test()
 {
 
@@ -81,6 +82,22 @@ void nlist_test()
         plat_printf("id : %d\n", tnode->id);
     }
 }
+
+/**
+ * @brief 内存控制块初始化
+ */
+void mblocker_test(void)
+{
+    mblock_t blist;
+    static uint8_t buffer[100][10];
+    mblock_init(&blist, buffer, 100, 10, NLOCKER_THREAD);
+    void* temp[10];
+    for (int i = 0; i < 10; i++) {
+        temp[i] = mblock_alloc(&blist, 0);
+        plat_printf("block : %p , free_count : %d\n", temp[i], mblock_free_cnt(&blist));
+    }
+}
+
 int main(void)
 {
     // 日志测试
@@ -91,6 +108,8 @@ int main(void)
     dbg_assert(1 == 1, "fail");
     // 通用链表测试
     nlist_test();
+    // 内存控制块测试
+    mblocker_test();
     // 网络初始化
     net_init();
     net_start();

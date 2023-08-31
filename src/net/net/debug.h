@@ -5,7 +5,7 @@
  * @brief 调试信息
  * @version 0.3 增加断言
  */
-
+#include "net_cfg.h"
 // 调试信息的显示样式设置
 #define DBG_STYLE_RESET "\033[0m" // 复位显示
 #define DBG_STYLE_ERROR "\033[31m" // 红色显示
