@@ -10,7 +10,9 @@
 #include "netif_pcap.h"
 #include "nlist.h"
 #include "nlocker.h"
+#include "pktbuf.h"
 #include "sys_plat.h"
+#define DBG_TEST DBG_LEVEL_INFO
 
 static sys_sem_t sem;
 
@@ -19,8 +21,6 @@ net_err_t netdev_init(void)
     netif_pcap_open();
     return NET_ERR_OK;
 }
-
-#define DBG_TEST DBG_LEVEL_INFO
 
 /**
  * @brief 链表测试
@@ -98,6 +98,15 @@ void mblocker_test(void)
     }
 }
 
+/**
+ * @brief 数据包测试
+ */
+void pktbuf_test(void)
+{
+    pktbuf_t* buf = pktbuf_alloc(2000);
+    pktbuf_free(buf);
+}
+
 int main(void)
 {
     // 日志测试
@@ -111,8 +120,9 @@ int main(void)
     // 内存控制块测试
     // mblocker_test();
     // 网络初始化
-    net_init();
-    net_start();
+    // net_init();
+    // net_start();
+    pktbuf_test();
 
     // 不同网卡的初始化
     netdev_init();

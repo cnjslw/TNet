@@ -33,6 +33,7 @@ static inline nlist_node_t* nlist_node_pre(nlist_node_t* node)
 static inline void nlist_node_set_next(nlist_node_t* node, nlist_node_t* next)
 {
     node->next = next;
+    next->pre = node;
 }
 
 /**
@@ -96,7 +97,7 @@ void nlist_insert_last(nlist_t* list, nlist_node_t* node);
 #define nlist_entry(node, parent_type, node_name) \
     ((parent_type*)(node ? noffset_to_parent((node), parent_type, node_name) : 0))
 
-void nlist_remove(nlist_t* list, nlist_node_t* node);
+nlist_node_t* nlist_remove(nlist_t* list, nlist_node_t* node);
 static inline nlist_node_t* nlist_remove_first(nlist_t* list)
 {
     nlist_node_t* first = nlist_first(list);
