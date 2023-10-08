@@ -1,11 +1,14 @@
 ﻿#include <stdio.h>
-#include "tnet_tiny.h"
+#include "xnet_tiny.h"
+#include "xserver_datetime.h"
 
-int main (void) {
-    tnet_init();
-    printf("tnet running\n");
+int main(void) {
+    xnet_init();
+
+    xserver_datetime_create;
+    printf("xnet running\n");
     while (1) {
-        tnet_poll();
+        xnet_poll();
     }
 
     return 0;
